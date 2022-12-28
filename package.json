@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "yarn watch-styles & next dev",
+    "dev": "conc --raw --names \"Rollup,Next\" \"yarn watch-styles\" \"next dev\"",
     "watch-styles": "rollup -c rollup.config.mjs --watch",
     "build-styles": "rollup -c rollup.config.mjs",
     "build": "yarn build-styles && next build",
@@ -26,6 +26,7 @@
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
     "@vanilla-extract/rollup-plugin": "^1.2.0",
+    "concurrently": "^7.6.0",
     "fast-glob": "^3.2.12",
     "prettier": "^2.8.1",
     "rollup": "^3.7.5",

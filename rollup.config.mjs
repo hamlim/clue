@@ -31,14 +31,24 @@ export default {
     // banner: "'use client';",
     entryFileNames({ name }) {
       if (name) {
-        return name.replace('.css', '.js')
+        return name
+          .replace('.css', '.js')
+          .replace('(', '')
+          .replace(')', '')
+          .replace('[', '')
+          .replace(']', '')
       }
       return ''
     },
     assetFileNames({ name }) {
       if (name) {
         if (name.endsWith('.css.ts.vanilla.css')) {
-          return name.replace('.css.ts.vanilla.css', '.css')
+          return name
+            .replace('.css.ts.vanilla.css', '.css')
+            .replace('(', '')
+            .replace(')', '')
+            .replace('[', '')
+            .replace(']', '')
         }
       }
       return ''
