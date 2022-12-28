@@ -157,27 +157,27 @@ let init: State = {
   grid: {
     suspects: [
       {
-        name: 'Mustard',
+        name: 'Colonel Mustard',
         cleared: false,
       },
       {
-        name: 'Plum',
+        name: 'Professor Plum',
         cleared: false,
       },
       {
-        name: 'Green',
+        name: 'Mr. Green',
         cleared: false,
       },
       {
-        name: 'Peacock',
+        name: 'Mrs. Peacock',
         cleared: false,
       },
       {
-        name: 'Scarlet',
+        name: 'Miss Scarlet',
         cleared: false,
       },
       {
-        name: 'White',
+        name: 'Mrs. White',
         cleared: false,
       },
     ],
