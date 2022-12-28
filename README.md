@@ -1,6 +1,7 @@
-# Template Next.js App
+# Clue Notes
 
-This repo acts as a template repo for some of my Next.js applications.
+A quick and dirty web app to keep track of your assumptions during a game of the
+boardgame Clue!
 
 ## Getting Started:
 
