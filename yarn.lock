@@ -278,9 +278,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ds-pack/components@npm:1.0.14":
-  version: 1.0.14
-  resolution: "@ds-pack/components@npm:1.0.14"
+"@ds-pack/components@npm:1.0.17":
+  version: 1.0.17
+  resolution: "@ds-pack/components@npm:1.0.17"
   peerDependencies:
     "@ds-pack/use-refs": "*"
     "@vanilla-extract/dynamic": ^2.0.2
@@ -288,7 +288,7 @@ __metadata:
     rainbow-sprinkles: ^0.15
     react: "*"
     react-dom: "*"
-  checksum: 65ba523b57f35e105ee079943ae0d419de3bab93eee7ed2d589ce66ec3e33c7035dde4c47ef3377e1d1e9839fc29fe11ad61ec9308a9101a9284ff489aee76bc
+  checksum: 8ff95df2756e2234a4baee4e02e1ab28322119acbad52a2a7de63e332091b00e1e599184d31917fdb3f5d9bc574a87c8e309ff8eb4842591c00503b41168a26c
   languageName: node
   linkType: hard
 
@@ -3449,7 +3449,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "template-next-app@workspace:."
   dependencies:
-    "@ds-pack/components": 1.0.14
+    "@ds-pack/components": 1.0.17
     "@ds-pack/use-refs": "*"
     "@types/node": ^16.11.36
     "@types/react": ^18.0.9

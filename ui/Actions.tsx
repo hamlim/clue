@@ -1,6 +1,7 @@
 'use client'
 import { useState } from '@lib/State'
 import { Button, Box } from '@ds-pack/components'
+import { Link } from './Link'
 
 export default function Actions() {
   let { dispatch } = useState()
@@ -16,15 +17,16 @@ export default function Actions() {
       >
         Assumption
       </Button>
-      <Button
+      <Link
         onClick={() => {
           dispatch({
             type: 'clear',
           })
         }}
+        href="/"
       >
         End Game
-      </Button>
+      </Link>
     </Box>
   )
 }
