@@ -11,7 +11,7 @@ export default function App() {
       </Text>
       <br />
       <Text>
-        <Link href="/checklist">Get Started!</Link>
+        <Link href="/choose-board">Choose board type</Link> to get started!
       </Text>
     </Container>
   )
