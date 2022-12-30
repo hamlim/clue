@@ -515,7 +515,7 @@ let init: State = {
 }
 
 function reducer(state: State, action: Action): State {
-  if (action.type) {
+  if (action && action.type) {
     switch (action.type) {
       case 'set-board': {
         return {
@@ -600,13 +600,18 @@ function reducer(state: State, action: Action): State {
       case 'clear': {
         return init
       }
+      default: {
+        return state
+      }
     }
   } else {
     if (action) {
       return {
+        ...state,
         ...(action as unknown as State),
       }
     }
+    return state
   }
 }
 
