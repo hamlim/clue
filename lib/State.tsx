@@ -515,7 +515,6 @@ let init: State = {
 }
 
 function reducer(state: State, action: Action): State {
-  console.log(action)
   if (action.type) {
     switch (action.type) {
       case 'set-board': {
@@ -603,8 +602,10 @@ function reducer(state: State, action: Action): State {
       }
     }
   } else {
-    return {
-      ...(action as unknown as State),
+    if (action) {
+      return {
+        ...(action as unknown as State),
+      }
     }
   }
 }
