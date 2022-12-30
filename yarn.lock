@@ -292,6 +292,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ds-pack/use-local-storage@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@ds-pack/use-local-storage@npm:0.1.0"
+  peerDependencies:
+    react: "*"
+  checksum: e620bb2f7c1b324cb78eaee25151a75e240289576a8605c233f17a02947b20a6b196928aec9028e2fd819d1339482f284e06e6df03b186ee1062353e84be5fda
+  languageName: node
+  linkType: hard
+
 "@ds-pack/use-refs@npm:*":
   version: 1.0.0
   resolution: "@ds-pack/use-refs@npm:1.0.0"
@@ -3450,6 +3459,7 @@ __metadata:
   resolution: "template-next-app@workspace:."
   dependencies:
     "@ds-pack/components": 1.0.17
+    "@ds-pack/use-local-storage": ^0.1.0
     "@ds-pack/use-refs": "*"
     "@types/node": ^16.11.36
     "@types/react": ^18.0.9

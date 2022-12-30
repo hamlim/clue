@@ -2,6 +2,8 @@
 import { Text, Box } from '@ds-pack/components'
 import { useState } from '@lib/State'
 
+import { note } from '@styles/app/assumptions/AssumptionList'
+
 export default function AssumptionList() {
   let { state } = useState()
 
@@ -36,7 +38,10 @@ export default function AssumptionList() {
             <br />
             {assumption.notes ? (
               <>
-                Notes: <Box is="pre">{assumption.notes}</Box>
+                Notes:{' '}
+                <Box is="pre" className={note}>
+                  {assumption.notes}
+                </Box>
               </>
             ) : null}
             <br />

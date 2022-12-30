@@ -1,5 +1,6 @@
 'use client'
 import { createContext, Dispatch, useContext, useReducer } from 'react'
+import { useLocalStorage } from '@ds-pack/use-local-storage'
 
 interface ClassicGrid {
   suspects: [
@@ -514,95 +515,104 @@ let init: State = {
 }
 
 function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case 'set-board': {
-      return {
-        ...state,
-        grid:
-          action.board === 'classic'
-            ? initialClassicGrid
-            : initialMasterDetectiveGrid,
-        board: action.board,
+  console.log(action)
+  if (action.type) {
+    switch (action.type) {
+      case 'set-board': {
+        return {
+          ...state,
+          grid:
+            action.board === 'classic'
+              ? initialClassicGrid
+              : initialMasterDetectiveGrid,
+          board: action.board,
+        }
       }
-    }
-    case 'start-assumption': {
-      return {
-        ...state,
-        isAssumptionPanelOpen: true,
+      case 'start-assumption': {
+        return {
+          ...state,
+          isAssumptionPanelOpen: true,
+        }
       }
-    }
-    case 'exit-assumption': {
-      return {
-        ...state,
-        isAssumptionPanelOpen: false,
+      case 'exit-assumption': {
+        return {
+          ...state,
+          isAssumptionPanelOpen: false,
+        }
       }
-    }
-    case 'make-assumption': {
-      return {
-        ...state,
-        isAssumptionPanelOpen: false,
-        assumptions: [...state.assumptions, action.assumption],
+      case 'make-assumption': {
+        return {
+          ...state,
+          isAssumptionPanelOpen: false,
+          assumptions: [...state.assumptions, action.assumption],
+        }
       }
-    }
-    case 'toggle-room': {
-      return {
-        ...state,
-        grid: {
-          ...state.grid,
-          rooms: state.grid.rooms.map((room) => {
-            if (room.name === action.name) {
-              return {
-                ...room,
-                cleared: !room.cleared,
+      case 'toggle-room': {
+        return {
+          ...state,
+          grid: {
+            ...state.grid,
+            rooms: state.grid.rooms.map((room) => {
+              if (room.name === action.name) {
+                return {
+                  ...room,
+                  cleared: !room.cleared,
+                }
               }
-            }
-            return room
-          }) as Grid['rooms'],
-        } as Grid,
+              return room
+            }) as Grid['rooms'],
+          } as Grid,
+        }
       }
-    }
-    case 'toggle-weapon': {
-      return {
-        ...state,
-        grid: {
-          ...state.grid,
-          weapons: state.grid.weapons.map((weapon) => {
-            if (weapon.name === action.name) {
-              return {
-                ...weapon,
-                cleared: !weapon.cleared,
+      case 'toggle-weapon': {
+        return {
+          ...state,
+          grid: {
+            ...state.grid,
+            weapons: state.grid.weapons.map((weapon) => {
+              if (weapon.name === action.name) {
+                return {
+                  ...weapon,
+                  cleared: !weapon.cleared,
+                }
               }
-            }
-            return weapon
-          }) as Grid['weapons'],
-        } as Grid,
+              return weapon
+            }) as Grid['weapons'],
+          } as Grid,
+        }
       }
-    }
-    case 'toggle-suspect': {
-      return {
-        ...state,
-        grid: {
-          ...state.grid,
-          suspects: state.grid.suspects.map((suspect) => {
-            if (suspect.name === action.name) {
-              return {
-                ...suspect,
-                cleared: !suspect.cleared,
+      case 'toggle-suspect': {
+        return {
+          ...state,
+          grid: {
+            ...state.grid,
+            suspects: state.grid.suspects.map((suspect) => {
+              if (suspect.name === action.name) {
+                return {
+                  ...suspect,
+                  cleared: !suspect.cleared,
+                }
               }
-            }
-            return suspect
-          }) as Grid['suspects'],
-        } as Grid,
+              return suspect
+            }) as Grid['suspects'],
+          } as Grid,
+        }
+      }
+      case 'clear': {
+        return init
       }
     }
-    case 'clear': {
-      return init
+  } else {
+    return {
+      ...(action as unknown as State),
     }
   }
 }
 
 export function Provider({ children }) {
-  let [state, dispatch] = useReducer(reducer, init)
+  let [state, dispatch] = useLocalStorage<State>(useReducer(reducer, init), {
+    key: 'clue-state',
+  })
 
   return (
     <stateContext.Provider value={{ dispatch, state }}>
