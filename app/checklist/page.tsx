@@ -1,8 +1,8 @@
 import ChecklistTable from './ChecklistTable'
-import Assumption from '@ui/Assumption/Assumption'
-import { Container } from '@ui/Container/Container'
+import Assumption from '@ui/Assumption'
+import { Container } from '@ui/Container'
 import Actions from '@ui/Actions'
-import { Nav } from '@ui/Nav/Nav'
+import { Nav } from '@ui/Nav'
 
 export default function Checklist() {
   return (

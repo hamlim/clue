@@ -1,8 +1,8 @@
-import { Container } from '@ui/Container/Container'
-import { Nav } from '@ui/Nav/Nav'
+import { Container } from '@ui/Container'
+import { Nav } from '@ui/Nav'
 import Actions from '@ui/Actions'
 import AssumptionList from './AssumptionList'
-import Assumption from '@ui/Assumption/Assumption'
+import Assumption from '@ui/Assumption'
 
 export default function Assumptions() {
   return (

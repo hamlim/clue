@@ -1,12 +1,6 @@
 'use client'
 import { useState } from '@lib/State'
-import {
-  Heading,
-  Text,
-  RadioButton,
-  Fieldset,
-  Banner,
-} from '@ds-pack/components'
+import { Heading, Text, RadioButton, Banner, Box } from '@ds-pack/daisyui'
 
 export default function BoardPicker() {
   let { state, dispatch } = useState()
@@ -27,15 +21,15 @@ export default function BoardPicker() {
         </Text>
       </Banner>
       <br />
-      <Fieldset>
+      <Box>
         <RadioButton
           checked={state.board === 'classic'}
           value="classic"
           name="board"
-          onChange={(val) => {
+          onChange={() => {
             dispatch({
               type: 'set-board',
-              board: val,
+              board: 'classic',
             })
           }}
         >
@@ -45,16 +39,16 @@ export default function BoardPicker() {
           checked={state.board === 'master-detective'}
           value="master-detective"
           name="board"
-          onChange={(val) => {
+          onChange={() => {
             dispatch({
               type: 'set-board',
-              board: val,
+              board: 'master-detective',
             })
           }}
         >
           Master Detective
         </RadioButton>
-      </Fieldset>
+      </Box>
     </>
   )
 }

@@ -1,13 +1,13 @@
 'use client'
 import { useState } from '@lib/State'
-import { Button, Box } from '@ds-pack/components'
+import { Button, Box } from '@ds-pack/daisyui'
 import { Link } from './Link'
 
 export default function Actions() {
   let { dispatch } = useState()
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="space-evenly">
+    <Box className="flex items-center justify-evenly">
       <Button
         onClick={() => {
           dispatch({

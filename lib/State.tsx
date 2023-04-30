@@ -261,6 +261,11 @@ type Action =
       type: 'start-assumption'
     }
   | {
+      type: 'edit-assumption'
+      assumption: Assumption
+      assumptionId: number
+    }
+  | {
       type: 'exit-assumption'
     }
   | {
@@ -276,6 +281,8 @@ interface State {
   grid: Grid
   isAssumptionPanelOpen: boolean
   board: Board
+  assumptionId: number | null
+  tempAssumption: Assumption | null
 }
 
 interface Context {
@@ -512,6 +519,7 @@ let init: State = {
   grid: initialClassicGrid,
   isAssumptionPanelOpen: false,
   board: 'classic',
+  tempAssumption: null,
 }
 
 function reducer(state: State, action: Action): State {
@@ -533,6 +541,14 @@ function reducer(state: State, action: Action): State {
           isAssumptionPanelOpen: true,
         }
       }
+      case 'edit-assumption': {
+        return {
+          ...state,
+          isAssumptionPanelOpen: true,
+          assumptionId: action.assumptionId,
+          tempAssumption: action.assumption,
+        }
+      }
       case 'exit-assumption': {
         return {
           ...state,
@@ -540,9 +556,24 @@ function reducer(state: State, action: Action): State {
         }
       }
       case 'make-assumption': {
+        if (state.assumptionId) {
+          return {
+            ...state,
+            isAssumptionPanelOpen: false,
+            tempAssumption: null,
+            assumptionId: null,
+            assumptions: state.assumptions.map((assumption, id) => {
+              if (id === state.assumptionId) {
+                return action.assumption
+              }
+              return assumption
+            }),
+          }
+        }
         return {
           ...state,
           isAssumptionPanelOpen: false,
+          tempAssumption: null,
           assumptions: [...state.assumptions, action.assumption],
         }
       }
@@ -619,6 +650,8 @@ export function Provider({ children }) {
   let [state, dispatch] = useLocalStorage<State>(useReducer(reducer, init), {
     key: 'clue-state',
   })
+
+  // let [state, dispatch] = useReducer(reducer, init)
 
   return (
     <stateContext.Provider value={{ dispatch, state }}>

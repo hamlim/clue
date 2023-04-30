@@ -1,11 +1,9 @@
 'use client'
-import { Text, Box } from '@ds-pack/components'
+import { Text, Box, Button } from '@ds-pack/daisyui'
 import { useState } from '@lib/State'
 
-import { note } from '@styles/app/assumptions/AssumptionList'
-
 export default function AssumptionList() {
-  let { state } = useState()
+  let { state, dispatch } = useState()
 
   if (state.assumptions.length === 0) {
     return <Text>No assumptions yet!</Text>
@@ -39,12 +37,25 @@ export default function AssumptionList() {
             {assumption.notes ? (
               <>
                 Notes:{' '}
-                <Box is="pre" className={note}>
+                <Box is="pre" className="whitespace-pre-wrap">
                   {assumption.notes}
                 </Box>
               </>
             ) : null}
             <br />
+            {/* <Button
+              variant="warning"
+              className="btn-sm"
+              onClick={() => {
+                dispatch({
+                  type: 'edit-assumption',
+                  assumption,
+                  assumptionId: id,
+                })
+              }}
+            >
+              Edit
+            </Button> */}
           </Box>
         )
       })}

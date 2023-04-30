@@ -1,5 +1,5 @@
-import { Text } from '@ds-pack/components'
-import { Container } from '@ui/Container/Container'
+import { Text } from '@ds-pack/daisyui'
+import { Container } from '@ui/Container'
 import { Link } from '@ui/Link'
 
 export default function App() {

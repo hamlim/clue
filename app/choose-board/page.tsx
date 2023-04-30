@@ -1,4 +1,4 @@
-import { Container } from '@ui/Container/Container'
+import { Container } from '@ui/Container'
 import BoardPicker from './BoardPicker'
 import { Link } from '@ui/Link'
 

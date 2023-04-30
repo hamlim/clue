@@ -1,36 +1,22 @@
-import { Heading, themeClass, Link } from '@ds-pack/components'
-import '@ds-pack/components/dist/vars.css'
-import '@ds-pack/components/dist/reset.css'
-
+import { Heading, Link } from '@ds-pack/daisyui'
 import { Provider } from '@lib/State'
-
-import { html, body, main, header, content, footer } from '@styles/app/layout'
-
-interface Classes {
-  [cls: string]: any
-}
-
-function cx(classes: Classes) {
-  return Object.entries(classes)
-    .filter(([, predicate]) => Boolean(predicate))
-    .map(([cls]) => cls)
-    .join(' ')
-}
+import type { Metadata } from 'next'
+import '@styles/globals.css'
 
 export default function Layout({ children }) {
   return (
-    <html lang="en-US" className={cx({ [themeClass]: true, [html]: true })}>
-      <body className={body}>
-        <main className={main}>
-          <header className={header}>
+    <html lang="en-US" data-theme="corporate" className="min-h-screen">
+      <body className="min-h-screen">
+        <main className="min-h-screen flex flex-col">
+          <header className="shrink bg-[rgba(1,50,32,.3)] text-center p-4">
             <Heading is="h1" variant="h1">
               📝 Clue Notes
             </Heading>
           </header>
-          <section className={content}>
+          <section className="grow py-4">
             <Provider>{children}</Provider>
           </section>
-          <footer className={footer}>
+          <footer className="shrink bg-[rgba(1,50,32,.3)] p-4 text-center">
             Created by <Link href="https://matthamlin.me">Matt Hamlin</Link> ©️{' '}
             {new Date().getFullYear()}
           </footer>
@@ -38,4 +24,9 @@ export default function Layout({ children }) {
       </body>
     </html>
   )
+}
+
+// @ts-ignore
+export let metadata: Metadata = {
+  title: `📝 Clue Notes`,
 }

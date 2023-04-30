@@ -1,11 +1,11 @@
-import { Text } from '@ds-pack/components'
-import { Link } from '../Link'
+import { Text } from '@ds-pack/daisyui'
+import { Link } from './Link'
 
-import { nav } from '@styles/ui/Nav/Nav'
+// import { nav } from '@styles/ui/Nav/Nav'
 
 export function Nav({ active }: { active: 'checklist' | 'assumptions' }) {
   return (
-    <div className={nav}>
+    <div className="flex items-center justify-evenly pb-2 mb-4 border-[#013220] border-b-2 border-solid">
       {active === 'checklist' ? (
         <Text>Checklist</Text>
       ) : (

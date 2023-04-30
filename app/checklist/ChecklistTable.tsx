@@ -5,13 +5,11 @@ import {
   // Stack,
   // VisuallyHidden,
   // Text,
-} from '@ds-pack/components'
+} from '@ds-pack/daisyui'
 import { useState } from '@lib/State'
 
-import { split } from '@styles/app/checklist/checklist'
-
 function Split({ children }) {
-  return <div className={split}>{children}</div>
+  return <div className="zflex zjustify-between zitems-center">{children}</div>
 }
 
 export default function ChecklistTable() {

@@ -7,11 +7,9 @@ import {
   Heading,
   Textarea,
   Box,
-} from '@ds-pack/components'
+} from '@ds-pack/daisyui'
 import { Room, Suspect, useState as useAppState, Weapon } from '@lib/State'
 import { useState } from 'react'
-
-import { panel } from '@styles/ui/Assumption/assumption'
 
 export default function Assumption() {
   let { dispatch, state } = useAppState()
@@ -20,51 +18,44 @@ export default function Assumption() {
   let [room, setRoom] = useState('')
   let [weapon, setWeapon] = useState('')
   let [notes, setNotes] = useState('')
+  let [configured, setConfigured] = useState(false)
+  if (
+    state.tempAssumption &&
+    player !== state.tempAssumption.player &&
+    !configured
+  ) {
+    setConfigured(true)
+    setPlayer(state.tempAssumption.player)
+    setSuspect(state.tempAssumption.suspect)
+    setRoom(state.tempAssumption.room)
+    setWeapon(state.tempAssumption.weapon)
+    setNotes(state.tempAssumption.notes)
+  }
   return (
     <>
       <Portal isOpen={state.isAssumptionPanelOpen}>
-        <div className={panel}>
-          <Heading is="h4" variant="h3">
-            Player Making Assumption:
-          </Heading>
-          <br />
-          <Input value={player} onChange={(val) => setPlayer(val)}>
-            <VisuallyHidden>Player making assumption</VisuallyHidden>
+        <div className="fixed bottom-0 left-0 right-0 h-[60vh] border-t-xl bg-white p-4 z-10 overflow-scroll shadow-[-10px_0_30px_0_#013220,10px_0_30px_0_#013220] rounded-t-xl">
+          <Input value={player} onChange={setPlayer}>
+            <>Player making assumption</>
           </Input>
           <br />
-          <Heading is="h4" variant="h3">
-            Suspect:
-          </Heading>
-          <br />
-          <Input value={suspect} onChange={(val) => setSuspect(val)}>
-            <VisuallyHidden>Suspect</VisuallyHidden>
+          <Input value={suspect} onChange={setSuspect}>
+            <>Suspect</>
           </Input>
           <br />
-          <Heading is="h4" variant="h3">
-            Weapon:
-          </Heading>
-          <br />
-          <Input value={weapon} onChange={(val) => setWeapon(val)}>
-            <VisuallyHidden>Weapon</VisuallyHidden>
+          <Input value={weapon} onChange={setWeapon}>
+            <>Weapon</>
           </Input>
           <br />
-          <Heading is="h4" variant="h3">
-            Room:
-          </Heading>
-          <br />
-          <Input value={room} onChange={(val) => setRoom(val)}>
-            <VisuallyHidden>Room</VisuallyHidden>
+          <Input value={room} onChange={setRoom}>
+            <>Room</>
           </Input>
           <br />
-          <Heading is="h4" variant="h3">
-            Notes:
-          </Heading>
-          <br />
-          <Textarea value={notes} onChange={(val) => setNotes(val)}>
-            <VisuallyHidden>Notes</VisuallyHidden>
+          <Textarea value={notes} onChange={setNotes}>
+            <>Notes</>
           </Textarea>
           <br />
-          <Box display="flex" alignItems="center" justifyContent="space-evenly">
+          <Box className="flex items-center justify-evenly">
             <Button
               onClick={() => {
                 setRoom('')
