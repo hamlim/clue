@@ -1,5 +1,5 @@
 'use client'
-import { Text, Box, Button } from '@ds-pack/daisyui'
+import { Text, Box, Button, Stack } from '@ds-pack/daisyui'
 import { useState } from '@lib/State'
 
 export default function AssumptionList() {
@@ -10,7 +10,7 @@ export default function AssumptionList() {
   }
 
   return (
-    <>
+    <Stack gap="4">
       {state.assumptions.map((assumption, id) => {
         return (
           <Box key={id}>
@@ -43,7 +43,7 @@ export default function AssumptionList() {
               </>
             ) : null}
             <br />
-            {/* <Button
+            <Button
               variant="warning"
               className="btn-sm"
               onClick={() => {
@@ -55,10 +55,10 @@ export default function AssumptionList() {
               }}
             >
               Edit
-            </Button> */}
+            </Button>
           </Box>
         )
       })}
-    </>
+    </Stack>
   )
 }

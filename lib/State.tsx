@@ -281,8 +281,13 @@ interface State {
   grid: Grid
   isAssumptionPanelOpen: boolean
   board: Board
-  assumptionId: number | null
-  tempAssumption: Assumption | null
+  editing:
+    | {
+        status: true
+        assumption: Assumption
+        assumptionId: number
+      }
+    | { status: false }
 }
 
 interface Context {
@@ -519,7 +524,7 @@ let init: State = {
   grid: initialClassicGrid,
   isAssumptionPanelOpen: false,
   board: 'classic',
-  tempAssumption: null,
+  editing: { status: false },
 }
 
 function reducer(state: State, action: Action): State {
@@ -545,8 +550,11 @@ function reducer(state: State, action: Action): State {
         return {
           ...state,
           isAssumptionPanelOpen: true,
-          assumptionId: action.assumptionId,
-          tempAssumption: action.assumption,
+          editing: {
+            status: true,
+            assumptionId: action.assumptionId,
+            assumption: action.assumption,
+          },
         }
       }
       case 'exit-assumption': {
@@ -556,14 +564,15 @@ function reducer(state: State, action: Action): State {
         }
       }
       case 'make-assumption': {
-        if (state.assumptionId) {
+        if (state.editing.status) {
           return {
             ...state,
             isAssumptionPanelOpen: false,
-            tempAssumption: null,
-            assumptionId: null,
+            editing: {
+              status: false,
+            },
             assumptions: state.assumptions.map((assumption, id) => {
-              if (id === state.assumptionId) {
+              if (state.editing.status && id === state.editing.assumptionId) {
                 return action.assumption
               }
               return assumption
@@ -573,7 +582,6 @@ function reducer(state: State, action: Action): State {
         return {
           ...state,
           isAssumptionPanelOpen: false,
-          tempAssumption: null,
           assumptions: [...state.assumptions, action.assumption],
         }
       }
@@ -650,8 +658,6 @@ export function Provider({ children }) {
   let [state, dispatch] = useLocalStorage<State>(useReducer(reducer, init), {
     key: 'clue-state',
   })
-
-  // let [state, dispatch] = useReducer(reducer, init)
 
   return (
     <stateContext.Provider value={{ dispatch, state }}>
